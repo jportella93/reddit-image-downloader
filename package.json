@@ -1,0 +1,14 @@
+{
+  "name": "get-reddit-wallpapers",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "download": "node index.js"
+  },
+  "dependencies": {
+    "just-snake-case": "^1.1.0",
+    "node-fetch": "^2.2.0",
+    "request": "^2.88.0"
+  }
+}
