@@ -1,14 +1,19 @@
 {
-  "name": "get-reddit-wallpapers",
+  "name": "Reddit Images Downloader",
+  "description": "Quick and easy Node.js program to download images from a specific subreddit.",
   "version": "1.0.0",
+  "author": "Jon Portella",
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "download": "node index.js"
+    "start": "node index.js"
   },
   "dependencies": {
     "just-snake-case": "^1.1.0",
     "node-fetch": "^2.2.0",
     "request": "^2.88.0"
+  },
+  "devDependencies": {
+    "eslint": "^5.12.1"
   }
 }
