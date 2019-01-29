@@ -13,10 +13,17 @@ const variablesToExport = {};
 
 // If a variable is pre-setted but also declared in the command line,
 // give priority to the one on the command line.
-// CAUTION: Numbers and Booleans will be treated as strings.
 for (let prop in envVariables) {
-  const variable = process.env[prop];
-  if (variable) variablesToExport[prop] = variable;
+  let variable = process.env[prop];
+
+  if (variable) {
+    // Set type, as command line variables always come as string
+    const type = typeof envVariables[prop];
+    if (type === 'number') variable = Number(variable);
+    if (type === 'boolean') variable = Boolean(variable);
+
+    variablesToExport[prop] = variable;
+  }
   else variablesToExport[prop] = envVariables[prop];
 }
 
