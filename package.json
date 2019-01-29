@@ -1,5 +1,5 @@
 {
-  "name": "Reddit Images Downloader",
+  "name": "reddit-image-downloader",
   "description": "Quick and easy Node.js program to download images from a specific subreddit.",
   "version": "1.0.0",
   "author": "Jon Portella",
