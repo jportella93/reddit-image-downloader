@@ -11,12 +11,18 @@ const { MAX_PICTURES, OUTPUT_DIR, SUBREDDIT, SORT_BY, TIME } = ENV_VARIABLES;
 async function getPicturesData(subreddit, sort_by, time, maxPictures) {
   const JSONresponse = await fetch(`https://www.reddit.com/r/${subreddit}/${sort_by}.json?t=${time}`),
     parsedResponse = await JSONresponse.json(),
-    picturesInfo = parsedResponse.data.children.slice(0, maxPictures);
+    postsData = parsedResponse.data.children;
 
-  const filteredPicturesInfo = picturesInfo.map(w => ({
-    title: w.data.title,
-    url: w.data.preview.images[0].source.url // Hi-res picture is the first image of array
-  }));
+  const filteredPicturesInfo = postsData.map(w => {
+    // Mark posts that don't contain a picture to filter them
+    if (!w.data.preview) return null;
+    return ({
+      title: w.data.title,
+      url: w.data.preview.images[0].source.url // Hi-res picture is the first image of array
+    });
+  })
+    .filter(el => el !== null)
+    .slice(0, maxPictures);
 
   // Escape urls and format titles
   return filteredPicturesInfo.map(picture => ({
