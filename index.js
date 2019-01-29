@@ -36,15 +36,16 @@ function download(url, filename, callback) {
 }
 
 async function main(dir, subreddit, sort_by, time, maxPictures) {
+  let downloadedImageCounter = 0;
   try {
     const pictures = await getPicturesData(subreddit, sort_by, time, maxPictures);
     await Promise.all(pictures.map(picture => new Promise(resolve =>
       download(picture.url, `${dir}${picture.title}`, () => {
-        console.log(`${picture.title} done`);
+        console.log(`${++downloadedImageCounter} - ${picture.title}`);
         resolve();
       }))
     ));
-    console.log(`All images downloaded in ${dir}`);
+    console.log(`\n${downloadedImageCounter} images from r/${subreddit} downloaded in ${dir}`);
     process.exit(0);
   } catch (error) {
     console.error(error);
