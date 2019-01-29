@@ -11,7 +11,7 @@ const { MAX_PICTURES, OUTPUT_DIR, SUBREDDIT, SORT_BY, TIME } = ENV_VARIABLES;
 async function getPicturesData(subreddit, sort_by, time, maxPictures) {
   const JSONresponse = await fetch(`https://www.reddit.com/r/${subreddit}/${sort_by}.json?t=${time}`),
     parsedResponse = await JSONresponse.json(),
-    picturesInfo = parsedResponse.data.children.slice(0, maxPictures + 1);
+    picturesInfo = parsedResponse.data.children.slice(0, maxPictures);
 
   const filteredPicturesInfo = picturesInfo.map(w => ({
     title: w.data.title,
