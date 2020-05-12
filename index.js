@@ -9,7 +9,7 @@ const { MAX_PICTURES, OUTPUT_DIR, SUBREDDIT, SORT_BY, TIME } = ENV_VARIABLES;
 
 // --- Function declarations ---
 async function getPicturesData(subreddit, sort_by, time, maxPictures) {
-  const JSONresponse = await fetch(`https://www.reddit.com/r/${subreddit}/${sort_by}.json?t=${time}`),
+  const JSONresponse = await fetch(`https://www.reddit.com/r/${subreddit}/${sort_by}.json?t=${time}&limit=${maxPictures}`),
     parsedResponse = await JSONresponse.json(),
     postsData = parsedResponse.data.children;
 
@@ -21,8 +21,7 @@ async function getPicturesData(subreddit, sort_by, time, maxPictures) {
       url: w.data.preview.images[0].source.url // Hi-res picture is the first image of array
     });
   })
-    .filter(el => el !== null)
-    .slice(0, maxPictures);
+    .filter(el => el !== null);
 
   // Escape urls and format titles
   return filteredPicturesInfo.map(picture => ({
