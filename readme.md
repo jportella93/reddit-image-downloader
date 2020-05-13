@@ -19,7 +19,7 @@ To set variables, edit the values in `env.js`.
 ```javascript
 // env.js
 
-  MAX_PICTURES: 10,
+  MAX_PICTURES: 10, // limit is 100
   OUTPUT_DIR: './downloads/', // Absolute or relative
   SUBREDDIT: 'puppies',
   SORT_BY: 'top', // (top, controversial, hot, rising)
