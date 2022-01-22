@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "just-snake-case": "^1.1.0",
-    "node-fetch": "^2.2.0",
+    "node-fetch": "^3.1.1",
     "request": "^2.88.0"
   },
   "devDependencies": {
